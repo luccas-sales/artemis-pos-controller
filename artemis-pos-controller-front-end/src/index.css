@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+
+
+@theme {
+  --color-silver-50: #f7f7f7;
+  --color-silver-100: #ededed;
+  --color-silver-200: #dfdfdf;
+  --color-silver-300: #c7c7c7;
+  --color-silver-400: #adadad;
+  --color-silver-500: #999999;
+  --color-silver-600: #888888;
+  --color-silver-700: #7b7b7b;
+  --color-silver-800: #676767;
+  --color-silver-900: #545454;
+  --color-silver-950: #363636;
+}
+
+
+@layer base {
+  * {
+    font: inherit;
+  }
+
+  body {
+    font-family: "Montserrat", sans-serif;
+    @apply bg-linear-to-r from-silver-950 to-silver-950/85;
+    color: var(--color-silver-50);
+    @apply text-base;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  img,
+  iframe,
+  video,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  i {
+    line-height: 0;
+  }
+
+  select,
+  ::picker(select) {
+    appearance: base-select;
+    overflow: hidden;
+  }
+
+  ::picker(select) {
+    border: 0;
+    margin: 10px 0;
+    color: var(--color-silver-50);
+    background-color: var(--color-silver-300);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  }
+
+  option {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input[type="number"]:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "artemis-pos-controller-back-end/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "artemis-pos-controller-front-end/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "artemis-pos-controller-back-end/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "artemis-pos-controller-front-end/$1"
+    }
+  ]
+}
