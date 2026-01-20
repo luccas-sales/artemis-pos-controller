@@ -21,7 +21,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "artemis-pos-controller-front-end/index.html"
+      "dest": "/index.html"
     }
   ]
 }
