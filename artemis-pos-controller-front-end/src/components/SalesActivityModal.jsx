@@ -1,7 +1,7 @@
 import { FiSave } from 'react-icons/fi';
 import { useContext, useMemo, useState } from 'react';
 import { BsExclamationCircle } from 'react-icons/bs';
-import { SalesActivityCheckoutLineModal } from './SalesActivityCheckoutLineModal';
+import { SalesActivityCheckoutCardModal } from './SalesActivityCheckoutCardModal';
 import { IoCloseSharp } from 'react-icons/io5';
 import axios from 'axios';
 import { DatabaseContext } from '../contexts/DatabaseContext';
@@ -155,19 +155,14 @@ export function SalesActivityModal({
         const { _id, isNew, isDeleted, ...cleanData } = checkout;
 
         if (isDeleted) {
-          return axios.delete(
-            `/pos/${id}/checkout/${_id}`,
-          );
+          return axios.delete(`/pos/${id}/checkout/${_id}`);
         }
 
         if (isNew) {
           return axios.post(`/pos/${id}`, cleanData);
         }
 
-        return axios.put(
-          `/pos/${id}/checkout/${_id}`,
-          cleanData,
-        );
+        return axios.put(`/pos/${id}/checkout/${_id}`, cleanData);
       });
 
       promises = checkoutUpdateOrCreate.concat(posChecked);
@@ -184,28 +179,28 @@ export function SalesActivityModal({
 
   return (
     <div
-      className={`fixed top-0 left-9 flex justify-center items-center w-full h-full z-99 ${
+      className={`fixed top-0 left-0 flex justify-center items-center w-full h-full z-99 ${
         !modalVisibility ? 'hidden' : ''
-      }`}
+      } p-6`}
     >
       <div className='bg-white text-silver-900 flex flex-col rounded-xl border border-silver-200 w-full max-w-5xl shadow-xl'>
-        <div className='flex items-center justify-between w-full gap-2 p-6 border-b border-silver-200 bg-silver-50/40 pb-6'>
+        <div className='flex items-center justify-between w-full gap-2 p-6 border-b border-silver-200 bg-silver-50/40 pb-6 max-sm:flex-col max-sm:gap-4'>
           <div className='flex flex-col items-start gap-3'>
             <input
               type='text'
-              className='h-8 rounded-md border border-silver-200 bg-white px-3 py-1 font-semibold text-xl shadow-sm transition-all outline-none focus:border-silver-500 focus:ring-2 focus:ring-silver-500/20'
+              className='h-8 rounded-md border border-silver-200 bg-white px-3 py-1 font-semibold text-xl outline-none focus:border-silver-500 focus:ring-2 focus:ring-silver-500/20 transition-all duration-300 ease-out shadow-md lg:hover:-translate-y-0.5 lg:hover:shadow-lg'
               value={formData.name}
               onChange={(e) => handleOnChange('name', e.target.value)}
             />
 
             <input
               type='text'
-              className='h-7 w-full rounded-md border border-silver-200 bg-white px-3 py-1 font-semibold text-sm text-silver-500 shadow-sm transition-all outline-none focus:border-silver-500 focus:ring-2 focus:ring-silver-500/20'
+              className='h-7 w-full rounded-md border border-silver-200 bg-white px-3 py-1 font-semibold text-sm text-silver-500 outline-none focus:border-silver-500 focus:ring-2 focus:ring-silver-500/20 transition-all duration-300 ease-out shadow-md lg:hover:-translate-y-0.5 lg:hover:shadow-lg'
               value={formData.address}
               onChange={(e) => handleOnChange('address', e.target.value)}
             />
           </div>
-          <div className='flex items-center gap-3'>
+          <div className='flex items-center gap-3 max-sm:flex-col'>
             {isNewPos ||
               (totalChanges > 0 && (
                 <span className='flex justify-center items-center gap-2 rounded-md border border-orange-200 px-2.5 py-1.5 font-medium text-sm bg-orange-100 text-orange-700'>
@@ -219,7 +214,7 @@ export function SalesActivityModal({
               ))}
             <div className='flex justify-center items-center gap-4'>
               <button
-                className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all bg-silver-950 text-white hover:bg-silver-800 h-9 px-4 py-2 gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed'
+                className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-silver-950 text-white hover:bg-silver-800 h-9 px-4 py-2 gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ease-out shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:shadow-lg'
                 disabled={totalChanges === 0 && !isNewPos}
                 onClick={() => handleSaveChanges()}
               >
@@ -227,60 +222,44 @@ export function SalesActivityModal({
                 Salvar
               </button>
               <button onClick={() => closeModal()}>
-                <IoCloseSharp className='size-6 cursor-pointer' />
+                <IoCloseSharp className='size-6 cursor-pointer transition-all duration-300 ease-out text-shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:text-shadow-lg' />
               </button>
             </div>
           </div>
         </div>
 
-        <div className='max-h-[60vh] overflow-y-auto'>
-          <table className='w-full text-sm'>
-            <thead className='sticky top-0 bg-silver-100 z-20 border-b border-silver-200 h-12'>
-              <tr className='text-silver-600'>
-                <th className='px-4 text-left align-middle font-semibold'>
-                  Nome
-                </th>
-                <th className='px-4 text-left align-middle font-semibold'>
-                  Last Purchase
-                </th>
-                <th className='px-4 text-left align-middle font-semibold'>
-                  Last Verification
-                </th>
-              </tr>
-            </thead>
+        <div className='max-h-[60vh] overflow-y-auto max-sm:max-h-[40vh]'>
+          <div className='grid grid-cols-3 gap-2 w-full text-sm p-3 max-sm:grid-cols-1'>
+            {formData.checkouts
+              .filter((checkout) => !checkout.isDeleted)
+              .map((checkout, index) => {
+                const original = checkouts.find(
+                  (check) => check._id === checkout._id,
+                );
 
-            <tbody className='divide-y divide-silver-100'>
-              {formData.checkouts
-                .filter((checkout) => !checkout.isDeleted)
-                .map((checkout, index) => {
-                  const original = checkouts.find(
-                    (check) => check._id === checkout._id,
-                  );
-
-                  return (
-                    <SalesActivityCheckoutLineModal
-                      key={`checkout_${checkout._id ? checkout._id : index}__key`}
-                      id={checkout._id}
-                      index={index + 1}
-                      name={checkout.name}
-                      lastPurchase={checkout.lastPurchase}
-                      lastVerification={checkout.lastVerification}
-                      originalData={original}
-                      handleCheckoutChange={handleCheckoutChange}
-                      handleCheckoutDelete={handleCheckoutDelete}
-                      isNewPos={isNewPos}
-                    />
-                  );
-                })}
-            </tbody>
-          </table>
+                return (
+                  <SalesActivityCheckoutCardModal
+                    key={`checkout_${checkout._id ? checkout._id : index}__key`}
+                    id={checkout._id}
+                    index={index + 1}
+                    name={checkout.name}
+                    lastPurchase={checkout.lastPurchase}
+                    lastVerification={checkout.lastVerification}
+                    originalData={original}
+                    handleCheckoutChange={handleCheckoutChange}
+                    handleCheckoutDelete={handleCheckoutDelete}
+                    isNewPos={isNewPos}
+                  />
+                );
+              })}
+          </div>
         </div>
 
         <div
-          className='flex justify-center items-center border-2 border-dashed border-silver-950/75 shadow-md rounded-lg p-3 w-full cursor-pointer hover:bg-silver-50 transition-colors'
+          className='group flex justify-center items-center border-2 border-dashed border-silver-950/75 shadow-md rounded-lg p-3 w-full cursor-pointer'
           onClick={() => createNewCheckout()}
         >
-          <IoIosAddCircle className='size-10 fill-silver-950/75' />
+          <IoIosAddCircle className='size-10 fill-silver-950/75 transition-all duration-300 ease-out text-shadow-md group-active:scale-95 lg:group-active:scale-95 lg:group-hover:-translate-y-0.5 lg:group-hover:text-shadow-lg' />
         </div>
       </div>
     </div>

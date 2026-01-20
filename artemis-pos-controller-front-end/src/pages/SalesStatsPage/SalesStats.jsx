@@ -38,10 +38,12 @@ export function SalesStats() {
     [&::-webkit-scrollbar-track]:bg-silver-950/50
       [&::-webkit-scrollbar-thumb]:rounded-full
     [&::-webkit-scrollbar-thumb]:bg-silver-950
-      [&::-webkit-scrollbar-thumb]:cursor-pointer'
+      [&::-webkit-scrollbar-thumb]:cursor-pointer max-md:p-3'
     >
       <div className='bg-linear-to-b from-silver-950/85 to-silver-950 shadow-md rounded-lg p-6 mb-8'>
-        <h3 className='text-xl font-bold mb-4'>General Statistics</h3>
+        <h3 className='text-xl font-bold mb-4 max-md:text-base'>
+          General Statistics
+        </h3>
 
         <div className='grid grid-cols-2 gap-2'>
           {database ? (
@@ -61,7 +63,7 @@ export function SalesStats() {
         </div>
       </div>
 
-      <div className='grid grid-cols-2 gap-2 w-full'>
+      <div className='grid grid-cols-2 gap-2 w-full max-md:grid-cols-1'>
         {database ? (
           <>
             {database.map((pos) => {

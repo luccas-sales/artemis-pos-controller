@@ -47,7 +47,7 @@ export function SalesActivity() {
     [&::-webkit-scrollbar-track]:bg-silver-950/50
       [&::-webkit-scrollbar-thumb]:rounded-full
     [&::-webkit-scrollbar-thumb]:bg-silver-950
-      [&::-webkit-scrollbar-thumb]:cursor-pointer'
+      [&::-webkit-scrollbar-thumb]:cursor-pointer max-lg:p-3'
     >
       {modalVisibility && (
         <SalesActivityModal
@@ -60,7 +60,7 @@ export function SalesActivity() {
         />
       )}
 
-      <div className='grid grid-cols-2 gap-2 mb-2 w-full'>
+      <div className='grid grid-cols-2 gap-2 mb-2 w-full max-lg:grid-cols-1'>
         {database ? (
           <>
             {database.map((pos) => {
