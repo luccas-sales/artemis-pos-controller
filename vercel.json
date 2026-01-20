@@ -17,11 +17,8 @@
       "dest": "artemis-pos-controller-back-end/index.js"
     },
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "artemis-pos-controller-front-end/$1"
     }
   ]
 }
