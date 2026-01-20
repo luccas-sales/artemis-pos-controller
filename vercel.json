@@ -17,8 +17,12 @@
       "dest": "artemis-pos-controller-back-end/index.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "artemis-pos-controller-front-end/$1"
+      "source": "/assets/(.*)",
+      "destination": "artemis-pos-controller-front-end/assets/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "artemis-pos-controller-front-end/index.html"
     }
   ]
 }
