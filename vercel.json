@@ -11,10 +11,10 @@
       "config": { "distDir": "dist" }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "artemis-pos-controller-back-end/index.js"
+      "source": "/api/(.*)",
+      "destination": "artemis-pos-controller-back-end/index.js"
     },
     {
       "source": "/assets/(.*)",
