@@ -9,7 +9,7 @@ export function SalesActivityCheckoutCardModal({
   lastVerification,
   originalData,
   handleCheckoutChange,
-  handleCheckoudivelete,
+  handleCheckoutDelete,
   isNewPos,
 }) {
   const isNewCheckout = !originalData;
@@ -59,7 +59,7 @@ export function SalesActivityCheckoutCardModal({
           <RiDeleteBinFill
             className='size-4 cursor-pointer transition-all duration-300 ease-out text-shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:text-shadow-lg'
             onClick={() => {
-              handleCheckoudivelete(id);
+              handleCheckoutDelete(id);
             }}
           />
         </div>
