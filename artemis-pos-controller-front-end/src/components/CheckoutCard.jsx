@@ -1,3 +1,6 @@
+import { AiFillAlert } from 'react-icons/ai';
+import { FaCalendarCheck } from 'react-icons/fa6';
+
 export function CheckoutCard({
   checkoutName,
   lastVerification,
@@ -20,6 +23,11 @@ export function CheckoutCard({
       <div>
         <div className='flex justify-between items-center w-full'>
           <p className='font-bold text-sm'>{checkoutName}</p>
+          {redFlag ? (
+            <AiFillAlert className='size-5' />
+          ) : (
+            <FaCalendarCheck className='size-4' />
+          )}
         </div>
         <p className='flex flex-col text-center mt-2 mb-2 text-sm'>
           Last Purchase:

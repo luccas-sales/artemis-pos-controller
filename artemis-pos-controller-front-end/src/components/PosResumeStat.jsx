@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ResumeStat } from './ResumeStat';
+import { AiFillAlert } from 'react-icons/ai';
+import { FaCalendarCheck } from 'react-icons/fa6';
 
 export function PosResumeStat({ posName, checkouts, checkIsRedFlag }) {
   const [totalRedFlags, setTotalRedFlags] = useState(0);
@@ -20,7 +22,14 @@ export function PosResumeStat({ posName, checkouts, checkIsRedFlag }) {
           : 'bg-linear-to-b from-green-900/85 to-green-900'
       } shadow-md rounded-lg p-6`}
     >
-      <h3 className='text-xl font-bold mb-4 max-md:text-base'>{posName}</h3>
+      <div className='flex justify-between w-full'>
+        <h3 className='text-xl font-bold mb-4 max-md:text-base'>{posName}</h3>
+        {totalRedFlags ? (
+          <AiFillAlert className='size-6' />
+        ) : (
+          <FaCalendarCheck className='size-5'/>
+        )}
+      </div>
 
       <div className='grid grid-cols-2 gap-2'>
         <ResumeStat value={checkouts.length} text='Total Number of Checkouts' />

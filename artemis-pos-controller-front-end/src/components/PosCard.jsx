@@ -64,12 +64,25 @@ export function PosCard({
           })
           .slice(initialIndex, finalIndex)
           .map((checkout) => {
-            const date = new Date().setHours(0, 0, 0, 0);
-            const lastPurchaseFormatted = new Date(
-              checkout.lastPurchase,
-            ).setHours(0, 0, 0, 0);
-            const weeklyMilliseconds = 1000 * 60 * 60 * 24 * 5;
-            const redFlag = date - lastPurchaseFormatted >= weeklyMilliseconds;
+            const now = new Date();
+            const lastPurchase = new Date(checkout.lastPurchase);
+
+            const nowUTC = Date.UTC(
+              now.getUTCFullYear(),
+              now.getUTCMonth(),
+              now.getUTCDate(),
+            );
+            const lastPurchaseUTC = Date.UTC(
+              lastPurchase.getUTCFullYear(),
+              lastPurchase.getUTCMonth(),
+              lastPurchase.getUTCDate(),
+            );
+
+            const diferencaEmDias = Math.floor(
+              (nowUTC - lastPurchaseUTC) / (1000 * 60 * 60 * 24),
+            );
+
+            const redFlag = diferencaEmDias >= 5;
 
             return (
               <CheckoutCard
