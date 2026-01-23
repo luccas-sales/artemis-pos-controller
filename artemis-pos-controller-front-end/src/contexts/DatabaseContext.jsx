@@ -19,8 +19,32 @@ export function DatabaseContextProvider({ children }) {
     fetchData();
   }, []);
 
+  const checkIsRedFlag = (lastPurchaseDate) => {
+    const now = new Date();
+    const lastPurchase = new Date(lastPurchaseDate);
+
+    const nowUTC = Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+    );
+    const lastPurchaseUTC = Date.UTC(
+      lastPurchase.getUTCFullYear(),
+      lastPurchase.getUTCMonth(),
+      lastPurchase.getUTCDate(),
+    );
+
+    const diferencaEmDias = Math.floor(
+      (nowUTC - lastPurchaseUTC) / (1000 * 60 * 60 * 24),
+    );
+
+    return diferencaEmDias >= 5;
+  };
+
   return (
-    <DatabaseContext.Provider value={{ database, setDatabase, fetchData }}>
+    <DatabaseContext.Provider
+      value={{ database, setDatabase, fetchData, checkIsRedFlag }}
+    >
       {children}
     </DatabaseContext.Provider>
   );

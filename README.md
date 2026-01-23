@@ -11,7 +11,7 @@ A modern and responsive web platform for monitoring fiscal POS systems, built wi
 - **HTML5** - Semantic application structure
 - **CSS3** - Styling with CSS variables and responsive design
 - **Tailwind CSS** - Utility-first CSS framework for rapid styling
-- **GSAP** - Professional animation engine for motion design
+- **Tailwind-Animate** - Professional animation engine for motion design
 - **React Router** - Declarative routing for React applications
 - **Axios** - Promise-based HTTP client for API requests
 - **React Hook Form** - Performant and flexible form management
@@ -55,7 +55,7 @@ A modern and responsive web platform for monitoring fiscal POS systems, built wi
 
 - Interactive Modals - Dedicated UI for editing unit metadata and managing checkout lists efficiently.
 - Dynamic Registration - Fast setup for new POS terminals and business addresses with built-in validation.
-- Fluid UI/UX - Timeline-based animations via GSAP and a fully responsive grid system built with Tailwind CSS.
+- Fluid UI/UX - Animations via Tailwind-Animate and a fully responsive grid system built with Tailwind CSS.
 - Data Consistency - Seamless synchronization between frontend forms and the MongoDB database.
 
 ## Security

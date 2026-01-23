@@ -3,32 +3,12 @@ import { useContext, useEffect, useState } from 'react';
 import { ResumeStat } from '../../components/ResumeStat';
 import { PosResumeStat } from '../../components/PosResumeStat';
 import { LuTriangleAlert } from 'react-icons/lu';
+import { SkeletonResumeStatLoading } from '../../components/SkeletonResumeStatLoading';
+import { PosSkeletonResumeStatLoading } from '../../components/PosSkeletonResumeStatLoading';
 
 export function SalesStats() {
   const [totalRedFlags, setTotalRedFlags] = useState(0);
-  const { database } = useContext(DatabaseContext);
-
-  const checkIsRedFlag = (lastPurchaseDate) => {
-    const now = new Date();
-    const lastPurchase = new Date(lastPurchaseDate);
-
-    const nowUTC = Date.UTC(
-      now.getUTCFullYear(),
-      now.getUTCMonth(),
-      now.getUTCDate(),
-    );
-    const lastPurchaseUTC = Date.UTC(
-      lastPurchase.getUTCFullYear(),
-      lastPurchase.getUTCMonth(),
-      lastPurchase.getUTCDate(),
-    );
-
-    const diferencaEmDias = Math.floor(
-      (nowUTC - lastPurchaseUTC) / (1000 * 60 * 60 * 24),
-    );
-
-    return diferencaEmDias >= 5;
-  };
+  const { database, checkIsRedFlag } = useContext(DatabaseContext);
 
   const totalCheckouts = database?.reduce(
     (acc, pos) => acc + pos.checkouts.length,
@@ -56,7 +36,7 @@ export function SalesStats() {
     [&::-webkit-scrollbar-thumb]:bg-silver-950
       [&::-webkit-scrollbar-thumb]:cursor-pointer max-md:p-3'
     >
-      <div className='flex flex-col gap-4 bg-linear-to-b from-silver-950/85 to-silver-950 shadow-md rounded-lg p-6 mb-8'>
+      <div className='flex flex-col gap-4 bg-linear-to-b from-silver-950/85 to-silver-950 shadow-md rounded-lg p-6 mb-8 animate-in fade-in duration-1000'>
         <h3 className='text-xl font-bold max-md:text-base'>
           General Statistics
         </h3>
@@ -74,7 +54,10 @@ export function SalesStats() {
               />
             </>
           ) : (
-            <p>...</p>
+            <>
+              <SkeletonResumeStatLoading />
+              <SkeletonResumeStatLoading />
+            </>
           )}
         </div>
 
@@ -99,7 +82,7 @@ export function SalesStats() {
             })}
           </>
         ) : (
-          <p>...</p>
+          <PosSkeletonResumeStatLoading />
         )}
       </div>
     </main>

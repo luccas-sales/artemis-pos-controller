@@ -11,6 +11,7 @@ export function PosCard({
   checkouts,
   handleModal,
   handleDeletePos,
+  checkIsRedFlag,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(checkouts.length / 9);
@@ -22,7 +23,7 @@ export function PosCard({
   const handleNextPage = () => setCurrentPage((prev) => prev + 1);
 
   return (
-    <div className='bg-linear-to-b from-silver-950/85 to-silver-950 shadow-md rounded-lg p-6'>
+    <div className='bg-linear-to-b from-silver-950/85 to-silver-950 shadow-md rounded-lg p-6 animate-in fade-in duration-1000'>
       <div className='flex justify-between mb-3 max-sm:flex-col'>
         <div className='flex flex-col justify-center items-start gap-2'>
           <h3 className='flex items-center gap-2 text-xl font-bold mb-1 max-sm:text-base max-sm:gap-1'>
@@ -64,25 +65,7 @@ export function PosCard({
           })
           .slice(initialIndex, finalIndex)
           .map((checkout) => {
-            const now = new Date();
-            const lastPurchase = new Date(checkout.lastPurchase);
-
-            const nowUTC = Date.UTC(
-              now.getUTCFullYear(),
-              now.getUTCMonth(),
-              now.getUTCDate(),
-            );
-            const lastPurchaseUTC = Date.UTC(
-              lastPurchase.getUTCFullYear(),
-              lastPurchase.getUTCMonth(),
-              lastPurchase.getUTCDate(),
-            );
-
-            const diferencaEmDias = Math.floor(
-              (nowUTC - lastPurchaseUTC) / (1000 * 60 * 60 * 24),
-            );
-
-            const redFlag = diferencaEmDias >= 5;
+            const redFlag = checkIsRedFlag(checkout.lastPurchase);
 
             return (
               <CheckoutCard

@@ -6,6 +6,7 @@ import { IoCloseSharp } from 'react-icons/io5';
 import axios from 'axios';
 import { DatabaseContext } from '../contexts/DatabaseContext';
 import { IoIosAddCircle } from 'react-icons/io';
+import { AiOutlineLoading } from 'react-icons/ai';
 
 export function SalesActivityModal({
   id,
@@ -21,7 +22,7 @@ export function SalesActivityModal({
     address: address,
     checkouts: checkouts,
   });
-
+  const [savingChanges, setSavingChanges] = useState(false);
   const isNewPos = id ? false : true;
 
   const totalChanges = useMemo(() => {
@@ -109,6 +110,7 @@ export function SalesActivityModal({
   };
 
   const handleSaveChanges = async () => {
+    setSavingChanges(true);
     let promises = [];
 
     if (isNewPos) {
@@ -172,7 +174,9 @@ export function SalesActivityModal({
       await Promise.all(promises);
       await fetchData();
       closeModal();
+      setSavingChanges(false);
     } catch (error) {
+      setSavingChanges(false);
       alert(error);
     }
   };
@@ -218,7 +222,11 @@ export function SalesActivityModal({
                 disabled={totalChanges === 0 && !isNewPos}
                 onClick={() => handleSaveChanges()}
               >
-                <FiSave className='size-4' />
+                {savingChanges ? (
+                  <AiOutlineLoading className='animate-spin size-4' />
+                ) : (
+                  <FiSave className='size-4' />
+                )}
                 Salvar
               </button>
               <button onClick={() => closeModal()}>

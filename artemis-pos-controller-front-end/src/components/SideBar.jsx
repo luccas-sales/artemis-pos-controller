@@ -9,7 +9,12 @@ export function SideBar() {
 
   return (
     <aside className='flex flex-col justify-between items-center h-full pt-5 pr-6 pb-5 max-md:pr-3 max-sm:flex-row max-sm:h-15 max-sm:pt-0 max-sm:pr-0 max-sm:pb-3'>
-      <GiPocketBow className='w-15 fill-silver-950 bg-silver-50 p-3 rounded-2xl shadow-md max-sm:w-10 max-sm:p-2 max-sm:rounded-xl' />
+      <Link
+        to='https://github.com/luccas-sales/artemis-pos-controller'
+        target='_blank'
+      >
+        <GiPocketBow className='w-15 fill-silver-950 bg-silver-50 p-3 rounded-2xl shadow-md max-sm:w-10 max-sm:p-2 max-sm:rounded-xl transition-all duration-300 ease-out text-shadow-md active:scale-100 lg:active:scale-100 lg:hover:scale-105 lg:hover:-rotate-5' />
+      </Link>
 
       <nav className='flex flex-col gap-10 max-sm:flex-row'>
         <Link to='/'>

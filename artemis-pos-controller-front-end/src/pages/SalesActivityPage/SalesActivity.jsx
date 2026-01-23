@@ -7,7 +7,7 @@ import { IoIosAddCircle } from 'react-icons/io';
 import PosSkeletonCardLoading from '../../components/PosSkeletonCardLoading';
 
 export function SalesActivity() {
-  const { database, fetchData } = useContext(DatabaseContext);
+  const { database, fetchData, checkIsRedFlag } = useContext(DatabaseContext);
   const [modalData, setModalData] = useState({});
   const [modalVisibility, setModalVisibility] = useState(false);
 
@@ -73,6 +73,7 @@ export function SalesActivity() {
                   checkouts={pos.checkouts}
                   handleModal={handleModal}
                   handleDeletePos={handleDeletePos}
+                  checkIsRedFlag={checkIsRedFlag}
                 />
               );
             })}
