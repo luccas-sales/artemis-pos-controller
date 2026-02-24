@@ -1,0 +1,36 @@
+{
+  "posCard": {
+    "edit": "Editar",
+    "delete": "Deletar",
+    "previous": "Anterior",
+    "of": "de",
+    "next": "Próximo"
+  },
+
+  "checkoutCard": {
+    "lastPurchase": "Última Compra",
+    "lastVerification": "Última Verificação"
+  },
+
+  "salesActivityModal": {
+    "newPosExampleName": "Nova Loja",
+    "newPosExampleAddress": "Rua de Exemplo, N 91225",
+    "newCheckoutExampleName": "Caixa 1",
+    "unsavedChange": "Alteração não salva",
+    "unsavedChanges": "Alterações não salvas",
+    "save": "Salvar",
+    "checkout": "Caixa"
+  },
+
+  "salesStats": {
+    "generalStatistics": "Estatísticas Gerais",
+    "totalCheckouts": "Número Total de Caixas",
+    "totalRedFlags": "Caixas em Estado Crítico",
+    "criticalStatus": "Estado Crítico: 5 dias sem vendas."
+  },
+
+  "posResumeStat": {
+    "totalNumberOfCheckouts": "Número Total de Caixas",
+    "checkoutsInCriticalStatus": "Caixas em Estado Crítico"
+  }
+}

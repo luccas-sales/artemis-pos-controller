@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ResumeStat } from './ResumeStat';
 import { AiFillAlert } from 'react-icons/ai';
 import { FaCalendarCheck } from 'react-icons/fa6';
+import { useTranslation } from 'react-i18next';
 
 export function PosResumeStat({ posName, checkouts, checkIsRedFlag }) {
   const [totalRedFlags, setTotalRedFlags] = useState(0);
@@ -13,6 +14,8 @@ export function PosResumeStat({ posName, checkouts, checkIsRedFlag }) {
 
     setTotalRedFlags(storeRedFlags);
   }, [setTotalRedFlags]);
+
+  const { t } = useTranslation();
 
   return (
     <div
@@ -32,8 +35,14 @@ export function PosResumeStat({ posName, checkouts, checkIsRedFlag }) {
       </div>
 
       <div className='grid grid-cols-2 gap-2'>
-        <ResumeStat value={checkouts.length} text='Total Number of Checkouts' />
-        <ResumeStat value={totalRedFlags} text='Checkouts in Critical Status' />
+        <ResumeStat
+          value={checkouts.length}
+          text={t('posResumeStat.totalNumberOfCheckouts')}
+        />
+        <ResumeStat
+          value={totalRedFlags}
+          text={t('posResumeStat.checkoutsInCriticalStatus')}
+        />
       </div>
     </div>
   );

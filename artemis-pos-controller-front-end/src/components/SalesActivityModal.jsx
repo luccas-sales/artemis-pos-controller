@@ -1,5 +1,6 @@
 import { FiSave } from 'react-icons/fi';
 import { useContext, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BsExclamationCircle } from 'react-icons/bs';
 import { SalesActivityCheckoutCardModal } from './SalesActivityCheckoutCardModal';
 import { IoCloseSharp } from 'react-icons/io5';
@@ -93,7 +94,7 @@ export function SalesActivityModal({
   const createNewCheckout = () => {
     const newCheckout = {
       _id: `tempId_${new Date().toISOString()}`,
-      name: `Checkout ${formData.checkouts.length + 1}`,
+      name: `${t('salesActivityModal.checkout')} ${formData.checkouts.length + 1}`,
       lastPurchase: new Date().toISOString(),
       lastVerification: new Date().toISOString(),
       isNew: 'isNew',
@@ -181,6 +182,8 @@ export function SalesActivityModal({
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div
       className={`fixed top-0 left-0 flex justify-center items-center w-full h-full z-99 ${
@@ -211,8 +214,8 @@ export function SalesActivityModal({
                   <BsExclamationCircle className='size-4' />
                   {`${totalChanges} ${
                     totalChanges === 1
-                      ? 'alteração não salva'
-                      : 'alterações não salvas'
+                      ? t('salesActivityModal.unsavedChange')
+                      : t('salesActivityModal.unsavedChanges')
                   }`}
                 </span>
               ))}
@@ -227,7 +230,7 @@ export function SalesActivityModal({
                 ) : (
                   <FiSave className='size-4' />
                 )}
-                Salvar
+                {t('salesActivityModal.save')}
               </button>
               <button onClick={() => closeModal()}>
                 <IoCloseSharp className='size-6 cursor-pointer transition-all duration-300 ease-out text-shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:text-shadow-lg' />

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CheckoutCard } from './CheckoutCard';
 import { FiEdit } from 'react-icons/fi';
 import { MdMonitor } from 'react-icons/md';
@@ -22,6 +23,8 @@ export function PosCard({
   const handlePrevPage = () => setCurrentPage((prev) => prev - 1);
   const handleNextPage = () => setCurrentPage((prev) => prev + 1);
 
+  const { t } = useTranslation();
+
   return (
     <div className='bg-linear-to-b from-silver-950/85 to-silver-950 shadow-md rounded-lg p-6 animate-in fade-in duration-1000'>
       <div className='flex justify-between mb-3 max-sm:flex-col'>
@@ -43,14 +46,14 @@ export function PosCard({
             }
           >
             <FiEdit className='size-4' />
-            Edit
+            {t('posCard.edit')}
           </div>
           <div
             className='flex justify-center items-center gap-1 bg-red-900/75 py-2 px-4 rounded-lg text-sm cursor-pointer max-sm:w-full transition-all duration-300 ease-out shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:shadow-lg'
             onClick={() => handleDeletePos(id)}
           >
             <FaRegTrashAlt className='size-4' />
-            Delete
+            {t('posCard.delete')}
           </div>
         </div>
       </div>
@@ -86,17 +89,17 @@ export function PosCard({
             disabled={currentPage === 1}
             onClick={handlePrevPage}
           >
-            Previous
+            {t('posCard.previous')}
           </button>
           <span className='max-sm:text-sm'>
-            {currentPage} de {totalPages}
+            {currentPage} {t('posCard.of')} {totalPages}
           </span>
           <button
             className='text-sm pl-3 pr-3 pt-1 pb-1 rounded-lg border-2 border-silver-500 cursor-pointer max-sm:text-xs transition-all duration-300 ease-out shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:shadow-lg'
             disabled={currentPage === totalPages}
             onClick={handleNextPage}
           >
-            Next
+            {t('posCard.next')}
           </button>
         </div>
       )}

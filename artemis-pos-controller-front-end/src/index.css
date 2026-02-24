@@ -56,7 +56,7 @@
 
   select,
   ::picker(select) {
-    appearance: base-select;
+    appearance: none;
     overflow: hidden;
   }
 
@@ -64,7 +64,7 @@
     border: 0;
     margin: 10px 0;
     color: var(--color-silver-50);
-    background-color: var(--color-silver-300);
+    background-color: var(--color-silver-600);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   }
 

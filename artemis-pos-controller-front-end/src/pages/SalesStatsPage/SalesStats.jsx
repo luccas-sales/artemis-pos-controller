@@ -1,5 +1,6 @@
 import { DatabaseContext } from '../../contexts/DatabaseContext';
 import { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ResumeStat } from '../../components/ResumeStat';
 import { PosResumeStat } from '../../components/PosResumeStat';
 import { LuTriangleAlert } from 'react-icons/lu';
@@ -26,6 +27,8 @@ export function SalesStats() {
     setTotalRedFlags(redFlagsCount);
   }, [database, setTotalRedFlags]);
 
+  const { t } = useTranslation();
+
   return (
     <main
       className='bg-silver-50 p-6 h-full w-full rounded-2xl overflow-x-hidden overflow-y-auto
@@ -38,7 +41,7 @@ export function SalesStats() {
     >
       <div className='flex flex-col gap-4 bg-linear-to-b from-silver-950/85 to-silver-950 shadow-md rounded-lg p-6 mb-8 animate-in fade-in duration-1000'>
         <h3 className='text-xl font-bold max-md:text-base'>
-          General Statistics
+          {t('salesStats.generalStatistics')}
         </h3>
 
         <div className='grid grid-cols-2 gap-2'>
@@ -46,11 +49,11 @@ export function SalesStats() {
             <>
               <ResumeStat
                 value={totalCheckouts}
-                text='Total Number of Checkouts'
+                text={t('salesStats.totalCheckouts')}
               />
               <ResumeStat
                 value={totalRedFlags}
-                text='Checkouts in Critical Status'
+                text={t('salesStats.totalRedFlags')}
               />
             </>
           ) : (
@@ -63,7 +66,7 @@ export function SalesStats() {
 
         <p className='flex justify-center items-center gap-1 w-full opacity-50 text-sm max-sm:text-xs'>
           <LuTriangleAlert className='size-5 max-sm:size-4' />
-          Critical Status: No sales for 5+ days.
+          {t('salesStats.criticalStatus')}
         </p>
       </div>
 

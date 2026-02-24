@@ -5,21 +5,24 @@ import { DatabaseContext } from '../../contexts/DatabaseContext';
 import { useContext, useState } from 'react';
 import { IoIosAddCircle } from 'react-icons/io';
 import PosSkeletonCardLoading from '../../components/PosSkeletonCardLoading';
+import { useTranslation } from 'react-i18next';
 
 export function SalesActivity() {
   const { database, fetchData, checkIsRedFlag } = useContext(DatabaseContext);
   const [modalData, setModalData] = useState({});
   const [modalVisibility, setModalVisibility] = useState(false);
 
+  const { t } = useTranslation();
+
   const handleModal = (data) => {
     setModalVisibility(true);
     if (!data) {
       data = {
-        name: 'New Pos',
-        address: 'street for example, N 91225',
+        name: t('salesActivityModal.newPosExampleName'),
+        address: t('salesActivityModal.newPosExampleAddress'),
         checkouts: [
           {
-            name: 'Checkout 1',
+            name: t('salesActivityModal.newCheckoutExampleName'),
             lastPurchase: new Date().toISOString(),
             lastVerification: new Date().toISOString(),
           },

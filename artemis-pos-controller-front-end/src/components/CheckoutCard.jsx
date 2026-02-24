@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { AiFillAlert } from 'react-icons/ai';
 import { FaCalendarCheck } from 'react-icons/fa6';
 
@@ -11,6 +12,8 @@ export function CheckoutCard({
     const dateFormatted = new Date(date);
     return dateFormatted.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
   }
+
+  const { t } = useTranslation();
 
   return (
     <div
@@ -30,13 +33,13 @@ export function CheckoutCard({
           )}
         </div>
         <p className='flex flex-col text-center mt-2 mb-2 text-sm'>
-          Last Purchase:
+          {t('checkoutCard.lastPurchase')}:
           <span className='font-bold'>{formattingDate(lastPurchase)}</span>
         </p>
       </div>
 
       <p className='text-center mt-2 text-xs font-semibold text-silver-200'>
-        Last Verification: {formattingDate(lastVerification)}
+        {t('checkoutCard.lastVerification')}: {formattingDate(lastVerification)}
       </p>
     </div>
   );

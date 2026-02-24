@@ -1,0 +1,36 @@
+{
+  "posCard": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "previous": "Previous",
+    "of": "of",
+    "next": "Next"
+  },
+
+  "checkoutCard": {
+    "lastPurchase": "Last Purchase",
+    "lastVerification": "Last Verification"
+  },
+
+  "salesActivityModal": {
+    "newPosExampleName": "New Store",
+    "newPosExampleAddress": "street for example, N 91225",
+    "newCheckoutExampleName": "Checkout 1",
+    "unsavedChange": "Unsaved Change",
+    "unsavedChanges": "Unsaved Changes",
+    "save": "Save",
+    "checkout": "Checkout"
+  },
+
+  "salesStats": {
+    "generalStatistics": "General Statistics",
+    "totalCheckouts": "Total Number of Checkouts",
+    "totalRedFlags": "Checkouts in Critical Status",
+    "criticalStatus": "Critical Status: No sales for 5+ days."
+  },
+
+  "posResumeStat": {
+    "totalNumberOfCheckouts": "Total Number of Checkouts",
+    "checkoutsInCriticalStatus": "Checkouts in Critical Status"
+  }
+}
