@@ -17,6 +17,7 @@ A modern and responsive web platform for monitoring fiscal POS systems, built wi
 - **React Hook Form** - Performant and flexible form management
 - **Yup** - Schema-based validation for runtime values
 - **React Icons** - Popular icon packs for React applications
+- **i18next (React-i18next)** - Internationalization support (EN/PT-BR) with dynamic language switching
 
 ### Backend
 
@@ -57,6 +58,7 @@ A modern and responsive web platform for monitoring fiscal POS systems, built wi
 - Dynamic Registration - Fast setup for new POS terminals and business addresses with built-in validation.
 - Fluid UI/UX - Animations via Tailwind-Animate and a fully responsive grid system built with Tailwind CSS.
 - Data Consistency - Seamless synchronization between frontend forms and the MongoDB database.
+- Internationalization (i18n) - Multi-language support (English and Brazilian Portuguese) with real-time language switching.
 
 ## Security
 
