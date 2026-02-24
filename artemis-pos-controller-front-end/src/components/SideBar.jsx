@@ -50,7 +50,7 @@ export function SideBar() {
             handleChangeLanguage();
           }}
         >
-          {i18n.language != 'pt' ? 'en' : 'pt'}
+          {i18n.language !== 'pt' ? 'pt' : 'en'}
         </p>
 
         <Link to='https://github.com/luccas-sales' target='_blank'>
