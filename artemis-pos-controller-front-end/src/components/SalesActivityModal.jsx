@@ -8,6 +8,7 @@ import axios from 'axios';
 import { DatabaseContext } from '../contexts/DatabaseContext';
 import { IoIosAddCircle } from 'react-icons/io';
 import { AiOutlineLoading } from 'react-icons/ai';
+import { FaRegCalendarCheck } from 'react-icons/fa';
 
 export function SalesActivityModal({
   id,
@@ -73,6 +74,18 @@ export function SalesActivityModal({
         }
         return checkout;
       }),
+    }));
+  };
+
+  const handleSetAllToToday = () => {
+    const today = new Date().toISOString();
+    const setAllTotoday = formData.checkouts.map((checkout) => {
+      return { ...checkout, lastPurchase: today, lastVerification: today };
+    });
+
+    setFormData((prev) => ({
+      ...prev,
+      checkouts: setAllTotoday,
     }));
   };
 
@@ -220,6 +233,14 @@ export function SalesActivityModal({
                 </span>
               ))}
             <div className='flex justify-center items-center gap-4'>
+              <button
+                className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-green-950 text-white hover:bg-green-800 h-9 px-4 py-2 gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ease-out shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:shadow-lg'
+                onClick={() => handleSetAllToToday()}
+              >
+                <FaRegCalendarCheck className='size-4' />
+                {t('salesActivityModal.SetAllToToday')}
+              </button>
+
               <button
                 className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-silver-950 text-white hover:bg-silver-800 h-9 px-4 py-2 gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ease-out shadow-md active:scale-95 lg:active:scale-95 lg:hover:-translate-y-0.5 lg:hover:shadow-lg'
                 disabled={totalChanges === 0 && !isNewPos}
